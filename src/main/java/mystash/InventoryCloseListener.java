@@ -3,20 +3,20 @@ package mystash;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryCloseEvent;
-import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.Inventory;
 
 public class InventoryCloseListener implements Listener {
-    private DataManager dataManager;
-
-    public InventoryCloseListener(DataManager dataManager) {
-        this.dataManager = dataManager;
-    }
 
     @EventHandler
     public void onInventoryClose(InventoryCloseEvent event) {
-        if (event.getInventory().getName().equals("My Stash")) {
-            ItemStack[] items = event.getInventory().getContents();
-            dataManager.savePlayerStash(event.getPlayer().getUniqueId(), items);
+        Inventory inventory = event.getInventory();
+
+        // Check if the inventory has a specific holder or identifier
+        if (inventory.getHolder() instanceof CustomInventoryHolder) {
+            System.out.println("Custom inventory closed");
+            // Perform actions specific to your custom inventory
+        } else {
+            System.out.println("Closed inventory: " + inventory.toString());
         }
     }
 }
