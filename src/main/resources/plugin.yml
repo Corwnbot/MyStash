@@ -1,0 +1,8 @@
+name: MyStash
+version: 1.0
+main: mystash.MyStash
+api-version: 1.19
+commands:
+  mystash:
+    description: Opens your stash inventory.
+    usage: /mystash
